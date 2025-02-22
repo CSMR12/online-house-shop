@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Hunter - Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #fff;
+            color: #000;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+        .house-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .house-info h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        .price {
+            font-size: 1.3rem;
+            color: #ff4d4d;
+            margin-bottom: 10px;
+        }
+        .location {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .details {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .contact-section {
+            border-top: 1px solid #000;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .contact-section p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .btn {
+            background-color: #000;
+            color: #fff;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #ff4d4d;
+        }
+        .back-btn {
+            background-color: #666;
+        }
+        .back-btn:hover {
+            background-color: #444;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="house-container">
+        <!-- House details populated by JS -->
+    </div>
+
+    <footer>
+        <p>© 2025 House Hunter</p>
+    </footer>
+
+    <script>
+        const houses = [
+            { category: "Modern Homes", title: "Modern Family Home", price: "$450,000", location: "123 Maple St, Portland, OR", details: "4 Beds | 3 Baths | 2,100 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Modern Homes", title: "Sleek Urban House", price: "$520,000", location: "456 Elm St, Seattle, WA", details: "3 Beds | 2 Baths | 1,900 sqft", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Modern Homes", title: "Contemporary Retreat", price: "$480,000", location: "789 Birch Ln, Denver, CO", details: "4 Beds | 3 Baths | 2,300 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Modern Homes", title: "Minimalist Haven", price: "$410,000", location: "321 Pine St, Austin, TX", details: "3 Beds | 2 Baths | 1,800 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Cottages", title: "Cozy Cottage", price: "$275,000", location: "456 Oak Ave, Asheville, NC", details: "2 Beds | 1 Bath | 1,200 sqft", img: "https://images.unsplash.com/photo-1600566752355-35792a44f390?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Cottages", title: "Rustic Getaway", price: "$230,000", location: "789 Cedar Rd, Boise, ID", details: "2 Beds | 1 Bath | 1,000 sqft", img: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Cottages", title: "Charming Bungalow", price: "$290,000", location: "123 Willow St, Eugene, OR", details: "3 Beds | 2 Baths | 1,300 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Cottages", title: "Quaint Cottage", price: "$260,000", location: "456 Spruce Dr, Burlington, VT", details: "2 Beds | 1 Bath | 1,150 sqft", img: "https://images.unsplash.com/photo-1600566752355-35792a44f390?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Condos", title: "Luxury Condo", price: "$750,000", location: "789 Pine Rd, Miami, FL", details: "3 Beds | 2 Baths | 1,800 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Condos", title: "City View Condo", price: "$620,000", location: "321 Ocean Dr, Los Angeles, CA", details: "2 Beds | 2 Baths | 1,500 sqft", img: "https://images.unsplash.com/photo-1560185893-a55cbc8c57da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Condos", title: "Downtown Loft", price: "$580,000", location: "654 Main St, Chicago, IL", details: "2 Beds | 2 Baths | 1,400 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Condos", title: "Beachfront Condo", price: "$690,000", location: "987 Bay Rd, San Diego, CA", details: "3 Beds | 2 Baths | 1,700 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Luxury Estates", title: "Grand Estate", price: "$1,200,000", location: "101 Hilltop Dr, Napa, CA", details: "5 Beds | 4 Baths | 3,500 sqft", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Luxury Estates", title: "Mansion Retreat", price: "$1,500,000", location: "202 Ridge Rd, Aspen, CO", details: "6 Beds | 5 Baths | 4,200 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Luxury Estates", title: "Lakefront Villa", price: "$1,300,000", location: "303 Lakeview Ln, Tahoe, NV", details: "5 Beds | 4 Baths | 3,800 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+            { category: "Luxury Estates", title: "Opulent Manor", price: "$1,800,000", location: "404 Estate Dr, Scottsdale, AZ", details: "7 Beds | 6 Baths | 5,000 sqft", img: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" }
+        ];
+
+        const houseContainer = document.getElementById('house-container');
+        const urlParams = new URLSearchParams(window.location.search);
+        const houseId = parseInt(urlParams.get('id'));
+
+        if (houseId >= 0 && houseId < houses.length) {
+            const house = houses[houseId];
+            houseContainer.innerHTML = `
+                <img src="${house.img}" alt="${house.title}" class="house-image">
+                <div class="house-info">
+                    <h1>${house.title}</h1>
+                    <p class="price">${house.price}</p>
+                    <p class="location">${house.location}</p>
+                    <p class="details">${house.details}</p>
+                    <button class="btn" onclick="alert('Contacting agent for ${house.title}...')">Contact</button>
+                    <a href="index.html" class="btn back-btn">Back</a>
+                </div>
+                <div class="contact-section">
+                    <p>Phone: +250788534210</p>
+                    <p>Email: househunter@gmail.com</p>
+                    <a href="mailto:househunter@gmail.com?subject=Feedback%20on%20${encodeURIComponent(house.title)}" target="_blank" class="btn">Send Feedback</a>
+                </div>
+            `;
+        } else {
+            houseContainer.innerHTML = '<p>House not found. <a href="index.html" style="color: #ff4d4d;">Go back</a></p>';
+        }
+    </script>
+</body>
+</html>
