@@ -123,6 +123,29 @@
             margin-top: 20px;
             border-top: 1px solid #000;
         }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .creator-profile {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .creator-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .home-section, .about-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
         @media (max-width: 768px) {
             .sidebar {
                 position: static;
@@ -141,44 +164,92 @@
 </head>
 <body>
     <div class="sidebar">
-        <h1>House Hunter</h1>
+        <h1>REAL ESTATE co.</h1>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#listings">All Listings</a></li>
+            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+            <li><a href="#listings" onclick="showSection('listings')">All Listings</a></li>
             <li><button onclick="filterCategory('Modern Homes')">Modern Homes</button></li>
             <li><button onclick="filterCategory('Cottages')">Cottages</button></li>
             <li><button onclick="filterCategory('Condos')">Condos</button></li>
             <li><button onclick="filterCategory('Luxury Estates')">Luxury Estates</button></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" onclick="showSection('about')">About</a></li>
+            <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+            <li><a href="#admin" onclick="showSection('admin')">Administrator</a></li>
         </ul>
     </div>
 
     <div class="main-content">
-        <div class="header">
-            <h2>Featured Listings</h2>
-            <button class="btn" onclick="shuffleListings()">Shuffle</button>
+        <div class="content-section active" id="home-section">
+            <div class="header">
+                <h2>Welcome to House Hunter</h2>
+            </div>
+            <div class="home-section">
+                <p>Discover your dream home with House Hunter! Whether you're looking for a modern urban retreat, a cozy cottage, or a luxurious estate, we’ve got you covered. Explore our curated listings and find the perfect place to call home.</p>
+                <p>Start browsing now or contact us for personalized assistance!</p>
+            </div>
         </div>
 
-        <div class="listings" id="listings-container">
-            <!-- Listings populated by JS -->
+        <div class="content-section" id="listings-section">
+            <div class="header">
+                <h2>All Listings</h2>
+                <button class="btn" onclick="shuffleListings()">Shuffle</button>
+            </div>
+            <div class="listings" id="listings-container">
+                <!-- Listings populated by JS -->
+            </div>
+        </div>
+
+        <div class="content-section" id="contact-section">
+            <div class="header">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-form">
+                <p>Have questions or need assistance? Reach out to our team!</p>
+                <p><strong>Phone:</strong> (555) 123-4567</p>
+                <p><strong>Email:</strong> support@househunter.com</p>
+                <p><strong>Address:</strong> 1234 Realty Lane, Suite 100, Portland, OR 97201</p>
+            </div>
+        </div>
+
+        <div class="content-section" id="about-section">
+            <div class="header">
+                <h2>About House Hunter</h2>
+            </div>
+            <div class="about-section">
+                <p>House Hunter was founded in 2025 with a mission to simplify the home-buying process. We connect buyers with top-tier properties across the U.S., offering detailed listings and expert support. Our team is dedicated to helping you find a home that fits your lifestyle and budget.</p>
+            </div>
+        </div>
+
+        <div class="content-section" id="admin-section">
+            <div class="header">
+                <h2>Administrator</h2>
+            </div>
+            <div class="creator-profile">
+                <img src="https://i.pinimg.com/736x/01/e8/9f/01e89f7d2ddd7dbecea2e70eedab55a8.jpg" alt="Creator Photo">
+                <h3>Dr. NTWALI SHAMI Prince</h3>
+                <p><strong>Location:</strong> RWANDA, KGL</p>
+                <p><strong>Role:</strong> Founder & Lead Developer</p>
+                <p><strong>About:</strong> NTWALI is a passionate web developer with over 10 years of experience in creating user-friendly platforms. He built House Hunter to make home searching accessible and enjoyable for everyone.</p>
+                <p><strong>Contact:</strong> ntwali.prince@househunter.com</p>
+                <p>SENIOR WORKER:<BR>MANAGER: NZIZA Natasha<br>ACCOUNTANT: Kevine</p>
+            </div>
         </div>
 
         <footer>
-            <p>© 2025 House Hunter</p>
+            <p>© 2025 REAL ESTATE COMPANY</p>
         </footer>
     </div>
 
     <script>
         const houses = [
-            { category: "Modern Homes", title: "Modern Family Home", price: "$450,000", location: "123 Maple St, Portland, OR", details: "4 Beds | 3 Baths | 2,100 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Modern Homes", title: "Sleek Urban House", price: "$520,000", location: "456 Elm St, Seattle, WA", details: "3 Beds | 2 Baths | 1,900 sqft", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Modern Homes", title: "Contemporary Retreat", price: "$480,000", location: "789 Birch Ln, Denver, CO", details: "4 Beds | 3 Baths | 2,300 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Modern Homes", title: "Minimalist Haven", price: "$410,000", location: "321 Pine St, Austin, TX", details: "3 Beds | 2 Baths | 1,800 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Cottages", title: "Cozy Cottage", price: "$275,000", location: "456 Oak Ave, Asheville, NC", details: "2 Beds | 1 Bath | 1,200 sqft", img: "https://images.unsplash.com/photo-1600566752355-35792a44f390?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Cottages", title: "Rustic Getaway", price: "$230,000", location: "789 Cedar Rd, Boise, ID", details: "2 Beds | 1 Bath | 1,000 sqft", img: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Cottages", title: "Charming Bungalow", price: "$290,000", location: "123 Willow St, Eugene, OR", details: "3 Beds | 2 Baths | 1,300 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { category: "Cottages", title: "Quaint Cottage", price: "$260,000", location: "456 Spruce Dr, Burlington, VT", details: "2 Beds | 1 Bath | 1,150 sqft", img: "https://images.unsplash.com/photo-1600566752355-35792a44f390?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
+            { category: "Modern Homes", title: "Inzora house", price: "$450,000", location: "123 Maple St, Portland, OR", details: "4 Beds | 3 Baths | 2,100 sqft", img: "https://i.pinimg.com/736x/d6/3c/94/d63c946aa982a7caae81cc1dc52d2149.jpg" },
+            { category: "Modern Homes", title: "Umutako house", price: "$520,000", location: "456 Elm St, Seattle, WA", details: "3 Beds | 2 Baths | 1,900 sqft", img: "https://i.pinimg.com/736x/38/99/b9/3899b9443cbe833eb0df9c73cf3cc6d6.jpg" },
+            { category: "Modern Homes", title: "Ikirezi retreat", price: "$480,000", location: "789 Birch Ln, Denver, CO", details: "4 Beds | 3 Baths | 2,300 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
+            { category: "Modern Homes", title: "Umuringa house", price: "$410,000", location: "321 Pine St, Austin, TX", details: "3 Beds | 2 Baths | 1,800 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
+            { category: "Cottages", title: "Bigwi cottage", price: "$275,000", location: "456 Oak Ave, Asheville, NC", details: "2 Beds | 1 Bath | 1,200 sqft", img: "https://i.pinimg.com/736x/72/91/43/729143d8f8f14ebf5dcde44335d17f48.jpg" },
+            { category: "Cottages", title: "Rugwiro gateway", price: "$230,000", location: "789 Cedar Rd, Boise, ID", details: "2 Beds | 1 Bath | 1,000 sqft", img: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
+            { category: "Cottages", title: "Imenagitera", price: "$290,000", location: "123 Willow St, Eugene, OR", details: "3 Beds | 2 Baths | 1,300 sqft", img: "https://i.pinimg.com/736x/2f/8a/5f/2f8a5f516b17fd49400ea5fba4d15c6f.jpg" },
+            { category: "Cottages", title: "Quaint Cottage", price: "$260,000", location: "456 Spruce Dr, Burlington, VT", details: "2 Beds | 1 Bath | 1,150 sqft", img: "https://i.pinimg.com/736x/fd/29/0a/fd290a46e9233393858f72c976011521.jpg" },
             { category: "Condos", title: "Luxury Condo", price: "$750,000", location: "789 Pine Rd, Miami, FL", details: "3 Beds | 2 Baths | 1,800 sqft", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
             { category: "Condos", title: "City View Condo", price: "$620,000", location: "321 Ocean Dr, Los Angeles, CA", details: "2 Beds | 2 Baths | 1,500 sqft", img: "https://images.unsplash.com/photo-1560185893-a55cbc8c57da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
             { category: "Condos", title: "Downtown Loft", price: "$580,000", location: "654 Main St, Chicago, IL", details: "2 Beds | 2 Baths | 1,400 sqft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
@@ -212,7 +283,8 @@
             });
         }
 
-        renderListings(houses.slice(0, 8));
+        // Initially show "Home" section
+        showSection('home');
 
         function shuffleListings() {
             const shuffled = [...houses].sort(() => Math.random() - 0.5);
@@ -221,7 +293,18 @@
 
         function filterCategory(category) {
             const filtered = houses.filter(house => house.category === category);
+            showSection('listings'); // Switch to listings section
             renderListings(filtered.slice(0, 8));
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`${sectionId}-section`).classList.add('active');
+            if (sectionId === 'listings') {
+                renderListings(houses.slice(0, 8)); // Default to showing all listings
+            }
         }
     </script>
 </body>
